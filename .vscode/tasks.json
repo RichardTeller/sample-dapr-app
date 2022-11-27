@@ -7,9 +7,9 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/test-project/aspnetapp.csproj"
+                "${workspaceFolder}/app/services/api-weather-forecast/api-weather-forecast.csproj"
             ],
-            "problemMatcher": "$tsc"
+            "problemMatcher": "$msCompile"
         },
         {
             "label": "publish",
@@ -17,9 +17,9 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/test-project/aspnetapp.csproj"
+                "${workspaceFolder}/app/services/api-weather-forecast/api-weather-forecast.csproj"
             ],
-            "problemMatcher": "$tsc"
+            "problemMatcher": "$msCompile"
         },
         {
             "label": "watch",
@@ -28,9 +28,9 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/test-project/aspnetapp.csproj"
+                "${workspaceFolder}/app/services/api-weather-forecast/api-weather-forecast.csproj"
             ],
-            "problemMatcher": "$tsc"
+            "problemMatcher": "$msCompile"
         }
     ]
 }

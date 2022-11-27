@@ -6,18 +6,21 @@ COPY package.json /app
 COPY package-lock.json /app
 
 RUN npm install
-RUN npx run build
+
+COPY . /app
+
+RUN npm run build
 
 FROM node:19-alpine
+
+WORKDIR /app/node
 
 COPY --from=build /app/build /app/build
 COPY package.json /app/node
 COPY package-lock.json /app/node
 
-WORKDIR /app/node
-
 RUN npm install --production
 
 EXPOSE 3000
 
-RUN npx serve -l 3000 /app/build
+CMD npx serve -l 3000 /app/build

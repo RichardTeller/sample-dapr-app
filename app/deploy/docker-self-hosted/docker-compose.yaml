@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  
+  nginx-proxy:
+    image: sample-dapr-app-nginx-proxy
+    ports:
+    - 80:80
+
+  ui:
+    image: sample-dapr-app-ui
+
+  ui-dapr-sidecar:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+     "-app-id", "ui",
+     "-app-port", "3000",
+     "-dapr-http-port", "3600",
+     "-dapr-grpc-port", "30000",
+     "-components-path", "/components"]
+    volumes:
+        - "./components/:/components"
+    depends_on:
+      - ui
+    network_mode: "service:ui"
+
+  api-weather-forecast:
+    image: sample-dapr-app-api-weather-forecast
+
+  api-weather-forecast-dapr-sidecar:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+     "-app-id", "ui",
+     "-app-port", "5000",
+     "-dapr-http-port", "5600",
+     "-dapr-grpc-port", "50000",
+     "-components-path", "/components"]
+    volumes:
+        - "./components/:/components"
+    depends_on:
+      - api-weather-forecast
+      - redis
+    network_mode: "service:api-weather-forecast"
+
+  redis:
+    image: "redis:alpine"
