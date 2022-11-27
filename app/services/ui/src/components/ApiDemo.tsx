@@ -1,4 +1,5 @@
 import React from 'react';
+import './ApiDemo.css';
 //import { DaprClient, DaprServer, HttpMethod, CommunicationProtocolEnum } from "@dapr/dapr";
 
 class ApiDemo extends React.Component {
@@ -14,7 +15,7 @@ class ApiDemo extends React.Component {
         super(props);
 
         //this.daprClient = new DaprClient(this.daprHost, this.daprHttpPort);
-        this.apiResponse = "";
+        this.apiResponse = "api response here";
     }
 
     async handleClick(): Promise<void> {
@@ -25,8 +26,8 @@ class ApiDemo extends React.Component {
 
     render() {
         return (
-            <div>
-                <button>Invoke API</button>
+            <div className="ApiDemo">
+                <button className="MyButton">Invoke API</button>
                 <textarea readOnly>{this.apiResponse}</textarea>
             </div>
         );
