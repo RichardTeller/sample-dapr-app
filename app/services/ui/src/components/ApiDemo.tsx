@@ -9,17 +9,27 @@ class ApiDemo extends React.Component {
 
     //public readonly daprClient: DaprClient
 
-    private apiResponse: string;
+    state: {
+        apiResponse: string
+    };
 
     constructor(props: any) {
         super(props);
 
         //this.daprClient = new DaprClient(this.daprHost, this.daprHttpPort);
-        this.apiResponse = "api response here";
+
+        this.state = {
+            apiResponse: ""
+        };
+
+        // This binding is necessary to make `this` work in the callback
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    async handleClick(): Promise<void> {
+    handleClick() {
 
+        console.log(this.state.apiResponse);
+        this.setState({ apiResponse: this.state.apiResponse + " a"});
         //const response = await this.daprClient.invoker.invoke("api-weather-forecast", "WeatherForecast", HttpMethod.GET);
         //console.log(response);
     }
@@ -27,8 +37,8 @@ class ApiDemo extends React.Component {
     render() {
         return (
             <div className="ApiDemo">
-                <button className="MyButton">Invoke API</button>
-                <textarea readOnly>{this.apiResponse}</textarea>
+                <button className="MyButton" onClick={this.handleClick}>Invoke API</button>
+                <textarea value={this.state.apiResponse}></textarea>
             </div>
         );
     }
