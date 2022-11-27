@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "serve": "^14.1.2"
+    "@dapr/dapr": "^2.5.0",
+    "https-browserify": "^1.0.0",
+    "serve": "^14.1.2",
+    "stream-http": "^3.2.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
